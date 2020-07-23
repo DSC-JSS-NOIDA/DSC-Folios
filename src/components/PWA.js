@@ -12,7 +12,6 @@ export class PWA extends Component {
                 </div>
                 <div className="col-lg-7">
                     <img src="assets/images/Group 152.svg"  style={{textAlign:'center', maxWidth:'100%', maxHeight:'100%'}} alt="img"/>
-
                 </div>
             </div>
         </div>

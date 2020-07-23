@@ -91,3 +91,9 @@
     }
 }
 
+@media only screen and (min-width: 992px) {
+    .upload{
+        margin-top: -100px;
+    }
+}
+

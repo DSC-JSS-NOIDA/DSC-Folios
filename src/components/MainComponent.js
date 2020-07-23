@@ -5,6 +5,7 @@ import HeaderComponent from './HeaderComponent';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import Build from './Build';
+import Profile from './Profile';
 
 export class MainComponent extends Component {
     render() {
@@ -16,6 +17,7 @@ export class MainComponent extends Component {
                     <Route path='/signin' component={SignIn} />
                     <Route exact path='/signup' component={SignUp}/>
                     <Route exact path='/build' component={Build}/>
+                    <Route exact path='/profile' component={Profile}/>
                     <Redirect to="/home" />
                 </Switch>
             </div>
