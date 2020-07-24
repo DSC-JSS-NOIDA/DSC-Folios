@@ -14,8 +14,6 @@ export class MainComponent extends Component {
                 <HeaderComponent/>
                 <Switch>
                     <Route path='/home' component={Home} />
-                    <Route path='/signin' component={SignIn} />
-                    <Route exact path='/signup' component={SignUp}/>
                     <Route exact path='/build' component={Build}/>
                     <Route exact path='/profile' component={Profile}/>
                     <Redirect to="/home" />
