@@ -39,19 +39,7 @@ export class HeaderComponent extends Component {
         isSignInModalOpen: !this.state.isSignInModalOpen
       });
     }
-
-    // handleSignUp(event){
-    //   this.toggleModal();
-    //   alert("Username: " + this.username.value + " Password: " + this.password.value);
-    //   event.preventDefault();
-    // }
-
-    // handleSignIn(event){
-    //     this.toggleModal();
-    //     alert("Username: " + this.username.value + " Password: " + this.password.value);
-    //     event.preventDefault();
-    // }
-
+    
     render() {
         return (
             <div>
@@ -93,19 +81,6 @@ export class HeaderComponent extends Component {
                     <ModalHeader toggle={this.toggleModalSignUp}>Sign Up</ModalHeader>
                     <ModalBody>
                         <br/>
-                        {/* <Form onSubmit={this.handleSignUp}>
-                            <FormGroup>
-                                <Label htmlFor="username">Username</Label>
-                                <Input type="text" id="username" name="username"
-                                    innerRef={(input) => this.username = input} />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label htmlFor="password">Password</Label>
-                                <Input type="password" id="password" name="password"
-                                    innerRef={(input) => this.password = input}  />
-                            </FormGroup>
-                            <Button type="submit" value="submit" color="primary">Sign Up</Button>
-                        </Form> */}
                         <SignUp/>
                     </ModalBody>
                 </Modal>
@@ -114,19 +89,6 @@ export class HeaderComponent extends Component {
                     <ModalHeader toggle={this.toggleModalSignIn}>Sign In</ModalHeader>
                     <ModalBody>
                         <br/>
-                        {/* <Form onSubmit={this.handleSignIn}>
-                            <FormGroup>
-                                <Label htmlFor="username">Username</Label>
-                                <Input type="text" id="username" name="username"
-                                    innerRef={(input) => this.username = input} />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label htmlFor="password">Password</Label>
-                                <Input type="password" id="password" name="password"
-                                    innerRef={(input) => this.password = input}  />
-                            </FormGroup>
-                            <Button type="submit" value="submit" color="primary">Sign In</Button>
-                        </Form> */}
                         <SignIn/>
                     </ModalBody>
                 </Modal>

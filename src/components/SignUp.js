@@ -29,6 +29,7 @@ export class SignUp extends Component {
     }
 
     handleSubmit(event) {
+        console.log('Current State is: ' + JSON.stringify(event.target));
         const data = new FormData(event.target);
         
         fetch('/api/form-submit-url', {
@@ -45,7 +46,7 @@ export class SignUp extends Component {
                     <Label htmlFor="name" md={3}>Name</Label>
                     <Col md={9}>
                         <Input type="text" id="name" name="name"
-                            placeholder="Name" value={this.state.email}
+                            placeholder="Name" value={this.state.name}
                             onChange={this.handleInputChange} />
                     </Col>
                 </FormGroup>

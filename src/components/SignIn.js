@@ -28,6 +28,8 @@ export class SignIn extends Component {
     }
 
     handleSubmit(event) {
+        console.log('Current State is: ' + JSON.stringify(event.target));
+        
         const data = new FormData(event.target);
         
         fetch('/api/form-submit-url', {
