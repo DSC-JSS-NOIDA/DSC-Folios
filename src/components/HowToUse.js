@@ -45,7 +45,7 @@ export class HowToUse extends Component {
 
     render() {
         return (
-            <div className="container" style={{marginTop:'70px'}}>
+            <div id="howtouse" className="container" style={{marginTop:'70px'}}>
                 <div className="row">
                     <div className="col-lg-4 col-sm-12 col-xs-12 col-xl-4">
                         <ul>

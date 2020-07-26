@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export class About extends Component {
     render() {
         return (
-            <div className="container">
+            <div id="about">
             <div className="container" style={{marginTop:'80px'}}>
                 <center>
                     <div>

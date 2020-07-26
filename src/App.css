@@ -1,28 +1,27 @@
 *{
     overflow-x: hidden;
 }
-.nav-bar{
-      position: sticky;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.7rem 2rem;
-      overflow: hidden;
-      z-index: 2;
-      width: 100%; 
-      margin: auto;
-      top: 0;
-      border-bottom: solid 1px var(--primary-color);
-      opacity: 0.9;
-      top: 0;
 
-      /* box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.25); */
-      box-shadow: 12px 0 15px -4px rgba(31, 73, 125, 0.8),
-        -12px 0 8px -4px rgba(31, 73, 125, 0.8);
-      box-shadow: 0 9px 0px 0px white, 0 -9px 0px 0px white,
-        12px 0 15px -4px rgba(31, 73, 125, 0.8),
-        -12px 0 15px -4px rgba(31, 73, 125, 0.8);
+html {
+    scroll-behavior: smooth;
 }
+
+body {
+  padding-top: 100px;
+} 
+
+.affix {
+    box-shadow: 0 8px 6px -6px #d5d5d5;
+}
+  
+.navbar {
+  background-color: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
 .nav-items{
     margin-right: 30px;
     color:black;
@@ -88,6 +87,12 @@
 @media only screen and (max-width: 768px) {
     .homecontent{
         text-align: center;
+    }
+}
+
+@media only screen and (min-width: 769px) {
+    .homecontent{
+        text-align: left;
     }
 }
 

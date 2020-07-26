@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label,Jumbotron } from 'reactstrap';
+import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Button, Modal, ModalHeader, ModalBody} from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import SignUp from './SignUp';
 import SignIn from './SignIn';
@@ -9,7 +9,6 @@ export class HeaderComponent extends Component {
     constructor(props) {
         super(props);
      
-        // this.toggleNav = this.toggleNav.bind(this);
         this.state = {
           isNavOpen: false,
           isSignInModalOpen: false,
@@ -18,7 +17,6 @@ export class HeaderComponent extends Component {
         this.toggleNav = this.toggleNav.bind(this);
         this.toggleModalSignIn = this.toggleModalSignIn.bind(this);
         this.toggleModalSignUp = this.toggleModalSignUp.bind(this);
-        // this.handleSignUp = this.handleSignUp.bind(this);
         
       }
 
@@ -43,33 +41,28 @@ export class HeaderComponent extends Component {
     render() {
         return (
             <div>
-                <Navbar color="white" light expand="lg" className="nav-bar">
+                <Navbar className="fixed-top" color="white" light expand="lg">
                     <div className="container">
-                        
                         <NavbarBrand className="mr-auto" href="/">
-              <img
-                src="assets/images/logoSmall.svg"
-                height="29px"
-                width="153px"
-                alt="Ristorante Con Fusion"
-              />
-            </NavbarBrand>
-            <NavbarToggler onClick={this.toggleNav} className="ml-auto" />
+                            <img  src="assets/images/logoSmall.svg"  height="29px"  width="153px" alt="Ristorante Con Fusion"
+                        />
+                        </NavbarBrand>
+                        <NavbarToggler onClick={this.toggleNav} className="ml-auto" />
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar className="ml-auto" style={{float:'right',color:'#000000'}}>
                             <NavItem className="nav-items">
-                                <NavLink color="dark" className="nav-link"  to='/home'> Home</NavLink>
+                                <NavLink color="dark" className="nav-link" to='/home'> Home</NavLink>
                             </NavItem>
                             <NavItem className="nav-items">
-                                <NavLink className="nav-link" to='/aboutus'> About</NavLink>
+                                <a href="#about" className="nav-link" to='/aboutus'> About</a>
                             </NavItem>
                             <NavItem className="nav-items"> 
-                                <NavLink className="nav-link"  to='/menu'> How to Use</NavLink>
+                                <a href="#howtouse" className="nav-link"  to='/menu'> How to Use</a>
                             </NavItem>
                             <NavItem className="nav-items">
                                 <Button type="button" className="btn buttons" onClick={this.toggleModalSignIn} style={{width:'120px', height:'auto',color:'#ffffff',fontSize:'15px'}} >Sign In</Button>
                             </NavItem>
-                            <NavItem>
+                            <NavItem className="nav-items">
                                 <Button type="button" className="btn buttons" onClick={this.toggleModalSignUp} style={{width:'120px', height:'auto',color:'#ffffff',fontSize:'15px'}} >Sign Up</Button>
                             </NavItem>
                             </Nav>                           
