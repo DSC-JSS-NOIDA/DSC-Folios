@@ -11,10 +11,10 @@ export class HowToUse extends Component {
         this.onClickEdit = this.onClickEdit.bind(this);
         this.onClickShare = this.onClickShare.bind(this);
 
-        const img0 = require("../images/Group135.svg");
-        const img1 = require("../images/Group134.svg");
-        const img2 = require("../images/Group139.svg");
-        const img3 = require("../images/Group135.svg");
+        const img0 = require("../images/Group135.png");
+        const img1 = require("../images/Group134.png");
+        const img2 = require("../images/Group139.png");
+        const img3 = require("../images/Group135.png");
 
         this.state = {
             index: 0,

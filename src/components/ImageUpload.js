@@ -6,7 +6,7 @@ export class ImageUpload extends Component {
         super(props);
 
         this.state = {
-            profileImg:'assets/images/Group 87.svg',
+            profileImg:'assets/images/Group 87.png',
             // imgList: ['https://s3.amazonaws.com/codechef_shared/sites/default/files/uploads/pictures/c6dc329579138a7dcf2d8daec9ecbd81.jpg','https://img.favpng.com/25/1/17/avatar-user-computer-icons-software-developer-png-favpng-7SbFpNeqKqhhTrrrnHFUqk6U4.jpg','https://www.pinclipart.com/picdir/middle/379-3797946_software-developer-computer-servers-web-others-web-developer.png','https://propulsionsoftware.com/wp-content/uploads/2016/10/Quality-Avatar.jpg','https://cdn4.vectorstock.com/i/thumb-large/26/38/professional-programmer-charatcter-smiling-man-vector-21172638.jpg'],
         }
     }
@@ -36,10 +36,10 @@ export class ImageUpload extends Component {
                 </div>
                 <center><div style={{marginTop:'20px'}}>
                     <p><b>Or Select an Avatar</b></p>
-                    <img src="assets/images/Avatar1.svg" style={{height:'80px',width:'auto',margin:'16px',cursor: 'pointer'}} />
-                    <img src="assets/images/Avatar2.svg" style={{height:'80px',width:'auto',margin:'16px',cursor: 'pointer'}}/>
-                    <img src="assets/images/Avatar3.svg" style={{height:'80px',width:'auto',margin:'16px',cursor: 'pointer'}}/>
-                    <img src="assets/images/Avatar4.svg" style={{height:'80px',width:'auto',margin:'16px',cursor: 'pointer'}}/>
+                    <img src="assets/images/Avatar1.png" style={{height:'80px',width:'auto',margin:'16px',cursor: 'pointer'}} />
+                    <img src="assets/images/Avatar2.png" style={{height:'80px',width:'auto',margin:'16px',cursor: 'pointer'}}/>
+                    <img src="assets/images/Avatar3.png" style={{height:'80px',width:'auto',margin:'16px',cursor: 'pointer'}}/>
+                    <img src="assets/images/Avatar4.png" style={{height:'80px',width:'auto',margin:'16px',cursor: 'pointer'}}/>
                 </div></center>
             </div>
         )

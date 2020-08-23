@@ -44,7 +44,7 @@ export class HeaderComponent extends Component {
                 <Navbar className="fixed-top" color="white" light expand="lg">
                     <div className="container">
                         <NavbarBrand className="mr-auto" href="/">
-                            <img  src="assets/images/logoSmall.svg"  height="29px"  width="153px" alt="Ristorante Con Fusion"
+                            <img  src="assets/images/logoSmall.svg"  height="29px"  width="153px" alt=""
                         />
                         </NavbarBrand>
                         <NavbarToggler onClick={this.toggleNav} className="ml-auto" />

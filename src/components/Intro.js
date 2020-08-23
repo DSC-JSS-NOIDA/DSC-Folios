@@ -12,7 +12,7 @@ export class PageOne extends Component {
                         <br/>
                         <button type="button" className="btn buttons" style={{width:'200px', height:'auto',color:'#ffffff',fontSize:'15px'}} >Sign Up for FREE</button>
                         <br/><br/>
-                        <img src="assets/images/img2.svg" width="170px" height="35px" alt="img"/>
+                        <img src="assets/images/img2.png" width="170px" height="35px" alt="img"/>
                     </div>
                     <div className="col-lg-7">
                         <center><img className="homepage-img" src="assets/images/img1.svg" style={{textAlign:'center', maxWidth:'100%', maxHeight:'100%'}} width="auto" alt="img"/></center>

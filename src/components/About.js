@@ -16,22 +16,22 @@ export class About extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-lg-4">
-                        <img src="assets/images/Group 155.svg" width="170px" height="auto" style={{margin:'40px'}}/>
+                        <img src="assets/images/Group 155.png" width="170px" height="auto" style={{margin:'40px'}}/>
                     </div>
                     <div className="col-lg-4">
-                        <img src="assets/images/Group 178.svg" width="170px" height="auto" style={{margin:'40px'}}/>
+                        <img src="assets/images/Group 178.png" width="170px" height="auto" style={{margin:'40px'}}/>
                     </div>
                     <div className="col-lg-4">
-                        <img src="assets/images/Group 179.svg" width="170px" height="auto" style={{margin:'40px'}}/>
+                        <img src="assets/images/Group 179.png" width="170px" height="auto" style={{margin:'40px'}}/>
                     </div>
                     <div className="col-lg-4">
-                        <img src="assets/images/Group 180.svg" width="170px" height="auto" style={{margin:'40px'}}/>    
+                        <img src="assets/images/Group 180.png" width="170px" height="auto" style={{margin:'40px'}}/>    
                     </div>
                     <div className="col-lg-4">
-                        <img src="assets/images/Group 181.svg" width="170px" height="auto" style={{margin:'40px'}}/>
+                        <img src="assets/images/Group 181.png" width="170px" height="auto" style={{margin:'40px'}}/>
                     </div>
                     <div className="col-lg-4">
-                        <img src="assets/images/Group 182.svg" width="170px" height="auto" style={{margin:'40px'}}/>
+                        <img src="assets/images/Group 182.png" width="170px" height="auto" style={{margin:'40px'}}/>
                     </div>
                 </div>
             </div>

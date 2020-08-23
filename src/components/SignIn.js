@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Button, Form, FormGroup, Input, Label, Col} from 'reactstrap';
-
+import axios from 'axios';
+import {Redirect} from 'react-router-dom';
 
 export class SignIn extends Component {
 
@@ -28,15 +29,21 @@ export class SignIn extends Component {
     }
 
     handleSubmit(event) {
-        console.log('Current State is: ' + JSON.stringify(event.target));
-        
-        const data = new FormData(event.target);
-        
-        fetch('/api/form-submit-url', {
-          method: 'POST',
-          body: data,
-        });
         event.preventDefault();
+
+        axios.post('/formSubmit', {
+            email: this.state.email,
+            password: this.state.password
+        })
+        .then(function (response) {
+            console.log(response.data);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+        // if(userFound){
+        //     return  <Redirect  to="/build/" />     
+        // }
     }
 
     render() {
