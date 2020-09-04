@@ -20,6 +20,9 @@ body {
   top: 0;
   width: 100%;
   z-index: 100;
+  -webkit-box-shadow: 0 4px 6px -6px rgb(223, 219, 219);
+  -moz-box-shadow: 0 4px 6px -6px rgb(218, 212, 212);
+  box-shadow: 0 8px 4px -6px rgb(212, 209, 209);
 }
 
 .nav-items{
@@ -102,3 +105,19 @@ body {
     }
 }
 
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#4285F4;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+
+.my-float{
+	margin-top:22px;
+}

@@ -12,11 +12,11 @@ export class PageOne extends Component {
                         <br/>
                         <a href="#"><img src="assets/images/img3.svg" width="200px" height="auto"/></a>
                         <br/><br/>
-                        <img src="assets/images/img2.svg" width="170px" height="35px" alt="jkskah"/>
+                        <img src="assets/images/img2.svg" width="170px" height="20px"/>
                     </div>
                     <div className="col-lg-7">
                         <img src="assets/images/img1.png" style={{textAlign:'center', maxWidth:'100%', maxHeight:'100%'}} alt="img"/>
-                    </div>
+                    </div> 
                 </div>
             </div>
         )

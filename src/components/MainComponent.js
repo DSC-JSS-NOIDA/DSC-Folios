@@ -4,6 +4,7 @@ import Home from './Home';
 import HeaderComponent from './HeaderComponent';
 import Build from './Build';
 import Profile from './Profile';
+import FinalDashboard from './FinalDashboard';
 
 export class MainComponent extends Component {
     render() {
@@ -14,6 +15,7 @@ export class MainComponent extends Component {
                     <Route path='/home' component={Home} />
                     <Route exact path='/build' component={Build}/>
                     <Route exact path='/profile' component={Profile}/>
+                    <Route exact path='/finalpage' component={FinalDashboard}/>
                     <Redirect to="/home" />
                 </Switch>
             </div>

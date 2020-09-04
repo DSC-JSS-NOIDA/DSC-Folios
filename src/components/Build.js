@@ -1,18 +1,17 @@
 import React, { useState } from 'react'
 import { Button,Form,FormGroup, Input, Col, Label } from 'reactstrap';
-import ImageUpload from './ImageUpload';
+//import ImageUpload from './ImageUpload';
 import axios from 'axios';
 
 function Build() {
     const [ownerState, setOwnerState] = useState({
-       displayname: '',
-       description: '',
-       setname1:'',
-       setname2:'',
-       Imagevalue: '',
-       Resumevalue: '',
-       Resumelink: ''
-
+        displayname: '',
+        description: '',
+        setname1:'',
+        setname2:'',
+        Imagevalue: 'img',
+        Resumevalue: '',
+        Resumelink: ''
     });
     const handleOwnerChange = (e) => setOwnerState({
       ...ownerState,
@@ -25,21 +24,58 @@ function Build() {
 
     const handleSubmit=(event)=> {
         event.preventDefault();
-        const data = new FormData(event.target);
+        var formData = new FormData(event.target);
+        formData.append('Imagevalue', `${ownerState.Imagevalue}`);
+        
+        for (var value of formData.values()) {
+            console.log(value); 
+         }
+        
         axios({
-            method: "POST", 
-            url:"http://localhost:3000/build", 
-            data: data
-          })
-          .then((response)=>{
-            if (response.data.status === 'success'){
-              console.log("Message Sent."); 
-              this.resetForm()
-            }else if(response.data.status === 'fail'){
-              console.log("Message failed to send.");
-            }
-          })
+          method: "POST", 
+          url:"http://localhost:3000/build", 
+          data: formData
+        })
+        .then((response)=>{
+          if (response.data.status === 'success'){
+            console.log("Message Sent."); 
+            this.resetForm()
+          }else if(response.data.status === 'fail'){
+            console.log("Message failed to send.");
+          }
+        })
     }
+
+
+    const uploadImage=()=> {
+        const r = new XMLHttpRequest()
+        const d = new FormData()
+        const e = document.getElementsByClassName('input-image')[0].files[0]
+        const client = '56ecb6f5d09d40e'
+        var u
+        var response = null
+        d.append('image', e)
+    
+        r.open('POST', 'https://api.imgur.com/3/image/')
+        r.setRequestHeader('Authorization', `Client-ID ${client}`)
+        r.onreadystatechange = function () {
+          
+          if(r.status === 200 && r.readyState === 4) {
+            let res = JSON.parse(r.responseText)
+            console.log(res)
+            response = res;
+            u = `https://i.imgur.com/${res.data.id}.png`           
+            if(response){
+                setOwnerState({
+                    ...ownerState,
+                    Imagevalue: response.data.link,
+                });
+            }
+          }
+        }
+        r.send(d)   
+      }
+      
 
       // handle input change
     const handleInputChange1 = event => {
@@ -100,6 +136,31 @@ const handleRemoveClick1 = index => {
         setSocailLinks(list);
       };
 
+    const avatarOne = () => {
+        setOwnerState({
+            ...ownerState,
+            Imagevalue: 'https://i.imgur.com/5jaFtm4.png',
+        });
+    }
+    const avatarTwo = () => {
+        setOwnerState({
+            ...ownerState,
+            Imagevalue: 'https://i.imgur.com/cNPpPY0.png',
+        });
+    }
+    const avatarThree = () => {
+        setOwnerState({
+            ...ownerState,
+            Imagevalue: 'https://i.imgur.com/Hi362Ql.png',
+        });
+    }
+    const avatarFour = () => {
+        setOwnerState({
+            ...ownerState,
+            Imagevalue: 'https://i.imgur.com/UaH2t9J.png',
+        });
+    }
+    
 
         return (
         <div className="container">
@@ -107,10 +168,10 @@ const handleRemoveClick1 = index => {
             <div className="row">
                 <div className="col-lg-6">
                     <div className="custom-div" style={{margin:'30px',backgroundColor:'#f5f5f5',padding:'15px',borderRadius:'6px'}}>
-                    <h6><b>About</b></h6>
+                    <p style={{fontSize:'18px',color:'#363636'}}><b>About</b></p>
                     <hr/>
                     <FormGroup className="form-group row">
-                        <Label htmlFor="displayname" md={3}>Display Name</Label>
+                        <Label style={{fontSize:'16px',color:'#404040'}} htmlFor="displayname" md={3}>Display Name</Label>
                         <Col md={9}>
                             <Input type="text" name="displayname" 
                                 placeholder="John Doe"
@@ -120,7 +181,7 @@ const handleRemoveClick1 = index => {
                         </Col>
                     </FormGroup>
                     <FormGroup className="form-group row">
-                        <Label htmlFor="description" md={3}>Description</Label>
+                        <Label style={{fontSize:'16px',color:'#404040'}} htmlFor="description" md={3}>Description</Label>
                         <Col md={9}>
                             <Input type="textarea" name="description" value={ownerState.description}
                                 onChange={handleOwnerChange}
@@ -134,10 +195,10 @@ const handleRemoveClick1 = index => {
                 </div>
                 <div className="col-lg-6" style={{height:'auto'}}>
                     <div className="custom-div" style={{margin:'30px',backgroundColor:'#f5f5f5',padding:'15px',borderRadius:'6px'}}>
-                    <h6><b>Link Set 1</b></h6>
+                    <p style={{fontSize:'18px',color:'#363636'}}><b>Link Set 1</b></p>
                     <hr/>
                     <FormGroup className="form-group row">
-                        <Label htmlFor="setname1" md={3}>Set Name</Label>
+                        <Label  style={{fontSize:'16px',color:'#404040'}} htmlFor="setname1" md={3}>Set Name</Label>
                         <Col md={9}>
                             <Input type="text" name="setname1" value={ownerState.setname1}
                                 onChange={handleOwnerChange}
@@ -153,7 +214,7 @@ const handleRemoveClick1 = index => {
                         return (
                             <div key={`LinkSet1-${i}`}>
                             <FormGroup className="form-group row">
-                                <Label htmlFor={linkHeading1} md={3}>Link Heading</Label>
+                                <Label style={{fontSize:'16px',color:'#404040'}} htmlFor={linkHeading1} md={3}>Link Heading</Label>
                                 <Col md={9}>
                                     <Input type="text" name={linkHeading1} className="form-control" value={LinkSet1[i].linkHeading1}
                                         onChange={handleInputChange1}
@@ -165,7 +226,7 @@ const handleRemoveClick1 = index => {
                                 </Col>
                             </FormGroup>
                             <FormGroup className="form-group row">
-                                <Label htmlFor={link1} md={3}>Link</Label>
+                                <Label  style={{fontSize:'16px',color:'#404040'}} htmlFor={link1} md={3}>Link</Label>
                                 <Col md={9}>
                                     <Input type="text" name={link1} className="form-control" value={LinkSet1[i].link1}
                                         onChange={handleInputChange1}
@@ -189,14 +250,32 @@ const handleRemoveClick1 = index => {
             </div>
             <div className="row">
             <div className="col-lg-6">
-                    <ImageUpload/>
+                <div className="custom-div upload" style={{height:'auto',margin:'30px',backgroundColor:'#f5f5f5',padding:'15px',borderRadius:'6px'}}>
+                    <p style={{fontSize:'18px',color:'#363636'}}><b>Profile Picture</b></p>
+                    <hr/>
+                    <div style={{height:'auto',borderStyle:'dashed',borderWidth:'1px',borderRadius:'5px',borderColor:'grey',padding:'15px'}}>
+                        <center>        
+                            {ownerState.Imagevalue && (
+                              <img src={ownerState.Imagevalue} alt=" " className="displayed-image" style={{height:'80px',width:'auto',margin:'3px'}}/>
+                            )}
+                        <center><input type="file" name="profileImg" className="input-image" onChange={uploadImage}/></center>
+                        </center>
+                    </div>
+                    <center><div style={{marginTop:'20px'}}>
+                        <p style={{fontSize:'18px',color:'#363636'}}><b>Or Select an Avatar</b></p>
+                        <img src="assets/images/Avatar1.png" onClick={avatarOne} style={{height:'80px',width:'auto',margin:'16px',cursor: 'pointer'}} />
+                        <img src="assets/images/Avatar2.png" onClick={avatarTwo} style={{height:'80px',width:'auto',margin:'16px',cursor: 'pointer'}}/>
+                        <img src="assets/images/Avatar3.png" onClick={avatarThree} style={{height:'80px',width:'auto',margin:'16px',cursor: 'pointer'}}/>
+                        <img src="assets/images/Avatar4.png" onClick={avatarFour} style={{height:'80px',width:'auto',margin:'16px',cursor: 'pointer'}}/>
+                    </div></center>
+                </div>
                 </div>
                 <div className="col-lg-6" style={{height:'auto'}}>
                     <div className="custom-div" style={{margin:'30px',backgroundColor:'#f5f5f5',padding:'15px',borderRadius:'6px'}}>
-                    <h6><b>Link Set 2</b></h6>
+                    <p style={{fontSize:'18px',color:'#363636'}}><b>Link Set 2</b></p>
                     <hr/>
                     <FormGroup className="form-group row">
-                        <Label htmlFor="setname2" md={3}>Set Name</Label>
+                        <Label style={{fontSize:'16px',color:'#404040'}} htmlFor="setname2" md={3}>Set Name</Label>
                         <Col md={9}>
                             <Input type="text" name="setname2" value={ownerState.setname2}
                                 onChange={handleOwnerChange}
@@ -212,7 +291,7 @@ const handleRemoveClick1 = index => {
                         return (
                             <div key={`LinkSet2-${i}`}>
                             <FormGroup className="form-group row">
-                                <Label htmlFor={linkHeading2} md={3}>Link Heading</Label>
+                                <Label style={{fontSize:'16px',color:'#404040'}} htmlFor={linkHeading2} md={3}>Link Heading</Label>
                                 <Col md={9}>
                                     <Input type="text" name={linkHeading2} className="form-control" value={LinkSet2[i].linkHeading2}
                                         data-idx={i}
@@ -224,7 +303,7 @@ const handleRemoveClick1 = index => {
                                 </Col>
                             </FormGroup>
                             <FormGroup className="form-group row">
-                                <Label htmlFor={link2} md={3}>Link</Label>
+                                <Label style={{fontSize:'16px',color:'#404040'}} htmlFor={link2} md={3}>Link</Label>
                                 <Col md={9}>
                                     <Input type="text" name={link2} className="form-control" value={LinkSet2[i].link2}
                                         data-idx={i}
@@ -248,21 +327,18 @@ const handleRemoveClick1 = index => {
             </div>
             <div className="row">
             <div className="col-lg-6" style={{}}>
-                <div className="custom-div upload" style={{height:'300px',margin:'30px',backgroundColor:'#f5f5f5',padding:'15px',borderRadius:'6px'}}>
-                    <h6><b>Resume Upload</b></h6>
+                <div className="custom-div upload" style={{height:'230px',margin:'30px',backgroundColor:'#f5f5f5',padding:'15px',borderRadius:'6px'}}>
+                    <p style={{fontSize:'18px',color:'#363636'}}><b>Resume Upload</b></p>
                     <hr/>
-                    <div style={{height:'100px',borderStyle:'dashed',borderWidth:'1px',borderRadius:'5px',borderColor:'grey',padding:'30px'}}>
-                    <center><input type="file" name="Resumevalue" value={ownerState.Resumevalue} onChange={handleOwnerChange}/></center>
-                    </div>
                     <center><div style={{marginTop:'20px'}}>
-                        <p><b>Or upload the link of resume</b></p>
+                        <p><b>Upload the link of resume</b></p>
                         <Input type="text" name="Resumelink" value={ownerState.Resumelink} onChange={handleOwnerChange}/>
                     </div></center>
                 </div>
             </div>
             <div className="col-lg-6" style={{}}>
                 <div className="custom-div upload" style={{height:'auto',margin:'30px',backgroundColor:'#f5f5f5',padding:'15px',borderRadius:'6px'}}>
-                    <h6><b>Social Media Links</b></h6>
+                    <p style={{fontSize:'18px',color:'#363636'}}><b>Social Media Links</b></p>
                     <hr/>
 
                     {SocailLinks.map((x,i) => {
@@ -270,7 +346,7 @@ const handleRemoveClick1 = index => {
                         const link = `link-${i}`;
                         return (
                             <div key={`SocailLinks-${i}`}>
-                            <Label style={{float:'left'}} md={4}>
+                            <Label style={{fontSize:'16px',color:'#404040'}} style={{float:'left'}} md={4}>
                                 <select className="form-control" name={Selected} className="form-control" data-idx={i} data-txt="Selected" id={Selected} value={SocailLinks[i].Selected} onChange={handleInputChange3}>
                                     <option value="Behance">Behance</option>
                                     <option value="LinkedIn">LinkedIn</option>
@@ -283,7 +359,7 @@ const handleRemoveClick1 = index => {
                             <hr/>
                             <div className="btn-box">
                                 {SocailLinks.length - 1 === i && <span><img src="assets/images/Group 102.png" style={{height:'40px',width:'auto',cursor: 'pointer',margin:'5px'}} onClick={handleAddClick3}/> <b>Add another Link</b></span>}
-                                {i!==0 && SocailLinks.length - 1 === i && <button style={{float:'right'}} className="mr10" onClick={() => handleRemoveClick3(i)}>Remove</button>}
+                                {i!==0 && SocailLinks.length - 1 === i && <a style={{float:'right'}} className="mr10" onClick={() => handleRemoveClick3(i)}><i class="fa fa-minus-circle my-float"></i></a>}
                             </div>
                             </div>
                         );

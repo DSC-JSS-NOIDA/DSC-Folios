@@ -41,7 +41,7 @@ export class HeaderComponent extends Component {
     render() {
         return (
             <div>
-                <Navbar className="fixed-top" color="white" light expand="lg">
+                <Navbar className="fixed-top navbar" color="white" light expand="lg">
                     <div className="container">
                         <NavbarBrand className="mr-auto" href="/">
                             <img  src="assets/images/logoSmall.svg"  height="29px"  width="153px" alt=""
