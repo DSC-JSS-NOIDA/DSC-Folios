@@ -59,13 +59,24 @@ export class Share extends Component {
     super(props);
 
     this.state = {
-      shareUrl:'https://caspg.com/react-sharingbuttons/',
+      shareUrl: '',
       title : 'Portfolio',
     };
   }
+
+
+  async componentWillMount() {
+      const url = "/get-slug";
+      const response = await fetch(url);
+      const data = await response.json();
+      
+      this.setState({shareUrl: `${window.location.hostname}/portfolio/${data.key}`});
+      
+    }
+
     render() {
+      console.log(this.props.slug);
         return (
-            
                 <div className="row" style={{padding:'20px'}}>
                   <FacebookShareButton
                     url={this.state.shareUrl}

@@ -29,7 +29,7 @@ body {
     margin-right: 30px;
     color:black;
     font-weight: bold;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 .heading_one{
     font-weight:bold;
@@ -121,3 +121,5 @@ body {
 .my-float{
 	margin-top:22px;
 }
+
+@keyframes FadeAnimation { 0% { opacity: 1; visibility: visible; } 100% { opacity: 0; visibility: hidden; } }

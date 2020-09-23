@@ -1,59 +1,116 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { Button,Form,FormGroup, Input, Col, Label } from 'reactstrap';
+import {DATA} from '../data.js';
+import { useHistory } from 'react-router'
 import axios from 'axios';
-import ReactDOM from 'react-dom';
-function Build() {
+
+function Edit() {
     const [ownerState, setOwnerState] = useState({
         displayname: '',
         description: '',
         setname1:'',
         setname2:'',
         Imagevalue: 'img',
-        Resumevalue: '',
         Resumelink: ''
     });
     const handleOwnerChange = (e) => setOwnerState({
       ...ownerState,
       [e.target.name]: [e.target.value],
     });
-
+    
     const [LinkSet1, setLinkSet1] = useState([{ linkHeading1: "", link1: "" }]);
     const [LinkSet2, setLinkSet2] = useState([{ linkHeading2: "", link2: "" }]);
     const [SocailLinks, setSocailLinks] = useState([{ Selected: "", link: "" },{ Selected: "", link: "" }]);
+
+
+    // useEffect(() =>
+    // fetch("/")
+    //   .then(res => res.json())
+    //   .then(res => this.setOwnerState({ displayname: res.display_name, description:res.description, setname1:res.link_set1_name, setname2:res.link_set2_name, Imagevalue:res.profile_picture, Resumelink:res.resume}))
+    //   .then(res => this.setLinkSet1({LinkSet1:res.set1_links}))
+    //   .then(res => this.setLinkSet2({LinkSet2:res.set2_links}))
+    //   .catch(() => this.setState({ hasErrors: true }))
+    // );
+ 
+    //const history = useHistory()
+    
+    useEffect(() => {
+        fetch("/")
+            .then(res => res.json())
+            .then(res => {
+                        
+                if(res.set1_links.length==1){
+                    setLinkSet1([{ linkHeading1: res.set1_links[0].link_heading, link1: res.set1_links[0].link_url }])
+                }
+                else if(res.set1_links.length==2){
+                    setLinkSet1([{ linkHeading1: res.set1_links[0].link_heading, link1: res.set1_links[0].link_url },{ linkHeading1: res.set1_links[1].link_heading, link1: res.set1_links[1].link_url }])
+                }
+                else if(res.set1_links.length==3){
+                    setLinkSet1([{ linkHeading1: res.set1_links[0].link_heading, link1: res.set1_links[0].link_url },{ linkHeading1: res.set1_links[1].link_heading, link1: res.set1_links[1].link_url },{ linkHeading1: res.set1_links[2].link_heading, link1: res.set1_links[2].link_url }])
+                }
+                else if(res.set1_links.length==4){
+                    setLinkSet1([{ linkHeading1: res.set1_links[0].link_heading, link1: res.set1_links[0].link_url },{ linkHeading1: res.set1_links[1].link_heading, link1: res.set1_links[1].link_url },{ linkHeading1: res.set1_links[2].link_heading, link1: res.set1_links[2].link_url }])
+                };
+                //setLinkSet1([{ linkHeading1: res.set1_links[0].link_heading, link1: res.set1_links[0].link_url },{ linkHeading1: res.set1_links[1].link_heading, link1: res.set1_links[1].link_url }])
+                setOwnerState({ displayname: res.display_name, description:res.description, setname1:res.link_set1_name, setname2:res.link_set2_name, Imagevalue:res.profile_picture, Resumelink:res.resume})
+        
+                if(res.set2_links.length==1){
+                    setLinkSet2([{ linkHeading2: res.set2_links[0].link_heading, link2: res.set2_links[0].link_url }])
+                }
+                else if(res.set2_links.length==2){
+                    setLinkSet2([{ linkHeading2: res.set2_links[0].link_heading, link2: res.set2_links[0].link_url },{ linkHeading2: res.set2_links[1].link_heading, link2: res.set2_links[1].link_url }])
+                }
+                else if(res.set2_links.length==3){
+                    setLinkSet2([{ linkHeading2: res.set2_links[0].link_heading, link2: res.set2_links[0].link_url },{ linkHeading2: res.set2_links[1].link_heading, link2: res.set2_links[1].link_url },{ linkHeading2: res.set2_links[2].link_heading, link2: res.set2_links[2].link_url }])
+                }
+                else if(res.set2_links.length==4){
+                    setLinkSet2([{ linkHeading2: res.set2_links[0].link_heading, link2: res.set2_links[0].link_url },{ linkHeading2: res.set2_links[1].link_heading, link2: res.set2_links[1].link_url },{ linkHeading2: res.set2_links[2].link_heading, link2: res.set2_links[2].link_url },{ linkHeading2: res.set2_links[3].link_heading, link2: res.set2_links[3].link_url }])
+                };
+                /////////
+        
+                if(res.social_links.length==1){
+                    setSocailLinks([{ Selected: res.social_links[0].link_name, link: res.social_links[0].link_url }])
+                }
+                else if(res.social_links.length==2){
+                    setSocailLinks([{ Selected: res.social_links[0].link_name, link: res.social_links[0].link_url },{ Selected: res.social_links[1].link_name, link: res.social_links[1].link_url }])
+                }
+                else if(res.social_links.length==3){
+                    setSocailLinks([{ Selected: res.social_links[0].link_name, link: res.social_links[0].link_url },{ Selected: res.social_links[1].link_name, link: res.social_links[1].link_url },{ Selected: res.social_links[2].link_name, link: res.social_links[2].link_url }])
+                }
+                else if(res.social_links.length==4){
+                    setSocailLinks([{ Selected: res.social_links[0].link_name, link: res.social_links[0].link_url },{ Selected: res.social_links[1].link_name, link: res.social_links[1].link_url },{ Selected: res.social_links[2].link_name, link: res.social_links[2].link_url },{ Selected: res.social_links[3].link_name, link: res.social_links[3].link_url }])
+                };
+
+            })
+            .catch(err => {
+                console.log(err.message);
+            })
+    }, []);
 
     const handleSubmit=(event)=> {
         event.preventDefault();
         var formData = new FormData(event.target);
         formData.append('Imagevalue', `${ownerState.Imagevalue}`);
-
+        
         for (var value of formData.values()) {
-            console.log(value);
+            console.log(value); 
          }
-
+        
         axios({
-          method: "POST",
-          url:"/api/submit",
+          method: "POST", 
+          url:"http://localhost:3000/build", 
           data: formData
         })
         .then((response)=>{
-            console.log(response.data);
-          if (response.data.status == 'success'){
-              window.location.href="/final";
-            this.resetForm();
-          }else if(response.data.status == 'back'){
-            window.location.href="/final";
-          }else if(response.data == 'fail'){
+          if (response.data.status === 'success'){
+            console.log("Message Sent."); 
+            this.resetForm()
+          }else if(response.data.status === 'fail'){
             console.log("Message failed to send.");
           }
         })
-        .catch((err)=> {
-            console.log(err.response.data.error);
-            alert(`${err.response.data.error}`);
-            // this.setState({error: err.response.data.error})
-        });
     }
-
-
+    
     const uploadImage=()=> {
         const r = new XMLHttpRequest()
         const d = new FormData()
@@ -62,16 +119,16 @@ function Build() {
         var u
         var response = null
         d.append('image', e)
-
+    
         r.open('POST', 'https://api.imgur.com/3/image/')
         r.setRequestHeader('Authorization', `Client-ID ${client}`)
         r.onreadystatechange = function () {
-
+          
           if(r.status === 200 && r.readyState === 4) {
             let res = JSON.parse(r.responseText)
             console.log(res)
             response = res;
-            u = `https://i.imgur.com/${res.data.id}.png`
+            u = `https://i.imgur.com/${res.data.id}.png`           
             if(response){
                 setOwnerState({
                     ...ownerState,
@@ -80,24 +137,24 @@ function Build() {
             }
           }
         }
-        r.send(d)
+        r.send(d)   
       }
-
+      
 
       // handle input change
     const handleInputChange1 = event => {
         const list = [...LinkSet1];
         list[event.target.dataset.idx][event.target.dataset.txt] = event.target.value;
-
+    
         setLinkSet1(list);
-      };
+    };
     // handle click event of the Add button
     const handleAddClick1 = () => {
         setLinkSet1([...LinkSet1, { linkHeading1: "", link1: "" }]);
     };
 
     // handle click event of the Remove button
-const handleRemoveClick1 = index => {
+    const handleRemoveClick1 = index => {
     const list = [...LinkSet1];
     list.splice(index, 1);
     setLinkSet1(list);
@@ -107,7 +164,7 @@ const handleRemoveClick1 = index => {
     const handleInputChange2 = event => {
         const list = [...LinkSet2];
         list[event.target.dataset.idx][event.target.dataset.txt] = event.target.value;
-
+    
         setLinkSet2(list);
       };
 
@@ -127,15 +184,15 @@ const handleRemoveClick1 = index => {
     const handleInputChange3 = event => {
         const list = [...SocailLinks];
         list[event.target.dataset.idx][event.target.dataset.txt] = event.target.value;
-
+    
         setSocailLinks(list);
     };
-
+    
     // handle click event of the Add button
     const handleAddClick3 = () => {
         setSocailLinks([...SocailLinks, { Selected: "", link: "" }]);
     };
-
+    
        // handle click event of the Remove button
     const handleRemoveClick3 = index => {
         const list = [...SocailLinks];
@@ -167,7 +224,7 @@ const handleRemoveClick1 = index => {
             Imagevalue: 'https://i.imgur.com/UaH2t9J.png',
         });
     }
-
+    
 
         return (
         <div className="container">
@@ -180,7 +237,7 @@ const handleRemoveClick1 = index => {
                     <FormGroup className="form-group row">
                         <Label style={{fontSize:'16px',color:'#404040'}} htmlFor="displayname" md={3}>Display Name</Label>
                         <Col md={9}>
-                            <Input type="text" name="displayname"
+                            <Input type="text" name="displayname" 
                                 placeholder="John Doe"
                                 className="form-control" value={ownerState.displayname}
                                 onChange={handleOwnerChange}
@@ -194,7 +251,7 @@ const handleRemoveClick1 = index => {
                                 onChange={handleOwnerChange}
                                 placeholder="I am a product designer"
                                 rows="4"
-                                className="form-control"
+                                className="form-control" 
                                  />
                         </Col>
                     </FormGroup>
@@ -261,7 +318,7 @@ const handleRemoveClick1 = index => {
                     <p style={{fontSize:'18px',color:'#363636'}}><b>Profile Picture</b></p>
                     <hr/>
                     <div style={{height:'auto',borderStyle:'dashed',borderWidth:'1px',borderRadius:'5px',borderColor:'grey',padding:'15px'}}>
-                        <center>
+                        <center>        
                             {ownerState.Imagevalue && (
                               <img src={ownerState.Imagevalue} alt=" " className="displayed-image" style={{height:'80px',width:'auto',margin:'3px'}}/>
                             )}
@@ -287,7 +344,7 @@ const handleRemoveClick1 = index => {
                             <Input type="text" name="setname2" value={ownerState.setname2}
                                 onChange={handleOwnerChange}
                                 placeholder="Projects"
-                                className="form-control"
+                                className="form-control" 
                                  />
                         </Col>
                     </FormGroup>
@@ -367,15 +424,15 @@ const handleRemoveClick1 = index => {
 
                             <hr/>
                             <div className="btn-box">
-                                {SocailLinks.length - 1 === i&&SocailLinks.length <6  && <span><img src="assets/images/Group 102.png" style={{height:'40px',width:'auto',cursor: 'pointer',margin:'5px'}} onClick={handleAddClick3}/> <b>Add another Link</b></span>}
-                                {i!==0 && SocailLinks.length - 1 === i && <a style={{float:'right'}} className="mr10" onClick={() => handleRemoveClick3(i)}><i class="fa fa-minus-circle my-float"></i></a>}
+                                {SocailLinks.length - 1 === i&&SocailLinks.length <6 && <span><img src="assets/images/Group 102.png" style={{height:'40px',width:'auto',cursor: 'pointer',margin:'5px'}} onClick={handleAddClick3}/> <b>Add another Link</b></span>}
+                                {i!==0 && SocailLinks.length - 1 === i && <a style={{float:'right'}} className="mr10" onClick={() => handleRemoveClick3(i)}><i className="fa fa-minus-circle my-float"></i></a>}
                             </div>
                             </div>
                         );
                         })}
 
 
-
+                    
                 </div>
             </div>
             </div>
@@ -387,6 +444,5 @@ const handleRemoveClick1 = index => {
         )
     }
 
+export default Edit
 
-
-export default Build
