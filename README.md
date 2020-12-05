@@ -51,7 +51,7 @@ Table of Contents
 
 ## Getting Started
 ### 1. Get Started to start contributing
-#####These are the steps to contribute to backend.
+######These are the steps to contribute to backend.
 
 ### 2. Star and Fork this Repository
 ###### You can star ⭐ and fork 🍽️ this repository on GitHub by navigating at the top of this repository.
